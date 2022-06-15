@@ -1,7 +1,6 @@
 package com.example.valorant_agents_informations.domain.use_case
 
 import com.example.valorant_agents_informations.common.Resource
-import com.example.valorant_agents_informations.data.remote.dto.AgentsListDtoItem
 import com.example.valorant_agents_informations.data.remote.dto.toAgents
 import com.example.valorant_agents_informations.domain.model.Agents
 import com.example.valorant_agents_informations.domain.repository.AgentsRepository
@@ -14,10 +13,10 @@ class GetListOfAgentsUseCase(
     operator fun invoke() : Flow<Resource<List<Agents>>> = flow{
         try{
             emit(Resource.Loading())
-            val agents = repository.getListOfAgents().map { it.toAgents() }
-            emit(Resource.Success(agents))
+            val agents = repository.getListOfAgents()
+            emit(Resource.Success(agents.map { it.toAgents() }))
         }catch (e : Exception){
-            emit(Resource.Error("An Error has occurred"))
+            emit(Resource.Error(e.toString()))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.valorant_agents_informations.presentation.ListOfAgentsScreen.view_model
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -27,16 +28,19 @@ class ListOfAgentsScreenViewModel (
     private fun getListOfAgents(){
         useCase().onEach { result ->
             when(result){
-                is Resource.Success -> {
-                    _state.value = ListOfAgentsScreenViewModelState(Agents = result.data ?: emptyList())
-                }
 
                 is Resource.Loading -> {
                     _state.value = ListOfAgentsScreenViewModelState(Loading = true)
+                    Log.e("Loading","is Loading")
+                }
+                is Resource.Success -> {
+                    _state.value = ListOfAgentsScreenViewModelState(Agents = result.data ?: emptyList())
+                    Log.e("Success",result.data.toString())
                 }
 
                 is Resource.Error -> {
                     _state.value = ListOfAgentsScreenViewModelState(Error = result.message)
+                    Log.e("Error",result.message.toString())
                 }
             }
         }.launchIn(viewModelScope)
