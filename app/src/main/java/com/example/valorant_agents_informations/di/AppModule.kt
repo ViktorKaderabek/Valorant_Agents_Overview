@@ -6,6 +6,9 @@ import com.example.valorant_agents_informations.data.repository.AgentsRepositroy
 import com.example.valorant_agents_informations.domain.repository.AgentsRepository
 import com.example.valorant_agents_informations.domain.use_case.GetAgentsDetailUseCase
 import com.example.valorant_agents_informations.domain.use_case.GetListOfAgentsUseCase
+import com.example.valorant_agents_informations.presentation.DetailAgentScreen.view_model.DetailAgentScreenViewModel
+import com.example.valorant_agents_informations.presentation.ListOfAgentsScreen.view_model.ListOfAgentsScreenViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -40,7 +43,6 @@ val AppModule = module {
     single { provideAgentsApi() }
 
 }
-/*
-val myIpInfoVm = module { viewModel { MyIpScreenViewModel(get()) } }
-val ipByIpVm = module { viewModel { IpByIpScreenViewModel(get()) } }
- */
+
+val myIpInfoVm = module { viewModel { ListOfAgentsScreenViewModel(get()) } }
+val ipByIpVm = module { viewModel { DetailAgentScreenViewModel(get()) } }
