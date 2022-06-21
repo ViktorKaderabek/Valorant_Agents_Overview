@@ -8,6 +8,7 @@ import com.example.valorant_agents_informations.domain.use_case.GetAgentsDetailU
 import com.example.valorant_agents_informations.domain.use_case.GetListOfAgentsUseCase
 import com.example.valorant_agents_informations.presentation.DetailAgentScreen.view_model.DetailAgentScreenViewModel
 import com.example.valorant_agents_informations.presentation.ListOfAgentsScreen.view_model.ListOfAgentsScreenViewModel
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
